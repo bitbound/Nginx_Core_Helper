@@ -1,0 +1,35 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <StackPanel Margin="20">
+      <TextBlock TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,5,10">
+        About:
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap" Margin="5,0,5,10">
+        I made this app mainly to try out Avalonia UI (http://avaloniaui.net/).  Its secondary purpose is to try to be useful by reducing boilerplate when creating ASP.NET Core apps behind Nginx.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,5,10">
+        Getting Started:
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap"  Margin="5,0,5,10">
+        This app must be run with sudo.  It's assumed you've already installed Nginx (sudo apt-get install nginx).  You will likely also want to install Certbot for automated SSL certificate installs.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap" Margin="5,0,5,10">
+        No error checking is done when creating new websites.  Names and ports must be unique for each app/site.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap"  Margin="5,0,5,10">
+        Services are created in /etc/systemd/system/.  Site configurations are created in /etc/nginx/sites-available/.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap" Margin="5,0,5,10">
+        Make sure you have UseStaticFiles enabled for the /.well-known/ directory for Certbot/Let's Encrypt.  Make sure you have forwarded headers enabled in your app code.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap" Margin="5,0,5,10">
+        Make sure you aren't redirecting to HTTPS in your .NET app code.  Nginx will handle HTTPS requests on port 443.  The proxy from Nginx to .NET Core will be over HTTP on the port you specify.
+      </TextBlock>
+      <TextBlock TextWrapping="Wrap" Margin="5,0,5,10">
+        See the official documentation for details:
+      </TextBlock>
+      <TextBox Text="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx"   Margin="10,0,10,10" HorizontalAlignment="Stretch"></TextBox>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

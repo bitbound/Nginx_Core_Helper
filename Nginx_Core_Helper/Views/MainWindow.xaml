@@ -1,0 +1,22 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Nginx_Core_Helper.ViewModels;assembly=Nginx_Core_Helper"
+        xmlns:local="clr-namespace:Nginx_Core_Helper.Views;assembly=Nginx_Core_Helper"
+        Icon="resm:Nginx_Core_Helper.Assets.avalonia-logo.ico"
+        Title="Nginx Core Helper"  Height="300" Width="550">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+  <Grid>
+    <TabControl TabStripPlacement="Left">
+      <TabItem Header="Websites">
+        <local:Websites></local:Websites>
+      </TabItem>
+      <TabItem Header="Info">
+        <local:Info></local:Info>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>

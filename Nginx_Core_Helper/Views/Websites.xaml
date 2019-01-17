@@ -1,0 +1,51 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Nginx_Core_Helper.ViewModels;assembly=Nginx_Core_Helper">
+        <Design.DataContext>
+          <vm:WebsitesViewModel/>
+        </Design.DataContext>
+  <Grid Margin="20">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <DockPanel>
+      <Image DockPanel.Dock="Right" HorizontalAlignment="Right" Source="resm:Nginx_Core_Helper.Assets.Question_16x.png" Height="18" Width="18"
+        IsVisible="{Binding IsInstallInfoVisible}" ToolTip.Tip="Run 'sudo apt-get install nginx' in the terminal." Cursor="Hand"></Image>
+      <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,5,0" Text="{Binding NginxStatus}"></TextBlock>
+      <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,10,0">Nginx Status:</TextBlock>
+    </DockPanel>
+
+    <DockPanel Grid.Row="1" Margin="0,10,0,10">
+      <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Center">Websites</TextBlock>
+      <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Width="80"  VerticalAlignment="Center" Command="{Binding CreateNewWebsite}">Create New</Button>
+    </DockPanel>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="2">
+      <StackPanel>
+        <ItemsControl Items="{Binding WebsitesList}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <DockPanel Margin="0,5,0,0">
+                <TextBlock DockPanel.Dock="Left" Text="Site:" VerticalAlignment="Center"></TextBlock>
+                <TextBlock DockPanel.Dock="Left" Text="{Binding ConfigFileName}" Margin="5,0,5,0" VerticalAlignment="Center"></TextBlock>
+                <TextBlock DockPanel.Dock="Left"  Margin="5,0,5,0" VerticalAlignment="Center">|</TextBlock>
+                <TextBlock DockPanel.Dock="Left" Text="Port:"  Margin="5,0,5,0" VerticalAlignment="Center"></TextBlock>
+                <TextBlock DockPanel.Dock="Left" Text="{Binding Port}" VerticalAlignment="Center"></TextBlock>
+                <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,0,5,0" Command="{Binding DeleteCommand}" VerticalAlignment="Center">
+                  Delete
+                </Button>
+                <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right"
+                           Cursor="Hand" IsVisible="{Binding IsNotRunning}" Foreground="Red"
+                           Margin="5,0,5,0" VerticalAlignment="Center"
+                           ToolTip.Tip="Enable sites by adding a link to their file in /etc/nginx/sites-enabled/.">Not Running</TextBlock>
+              </DockPanel>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <TextBlock Text="{Binding ErrorMessage}" IsVisible="{Binding IsErrorMessageVisible}"></TextBlock>
+      </StackPanel>
+    </ScrollViewer>
+  </Grid>
+</UserControl>

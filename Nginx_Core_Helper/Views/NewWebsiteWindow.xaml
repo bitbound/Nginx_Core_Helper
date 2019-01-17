@@ -1,0 +1,42 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add New Website"
+        xmlns:vm="clr-namespace:Nginx_Core_Helper.ViewModels;assembly=Nginx_Core_Helper"
+        Icon="resm:Nginx_Core_Helper.Assets.avalonia-logo.ico"
+        Height="350" Width="500">
+  <Design.DataContext>
+    <vm:NewWebsiteViewModel />
+  </Design.DataContext>
+  <StackPanel Margin="20">
+    <DockPanel Margin="0,0,0,20">
+      <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center">Site File Name: </TextBlock>
+      <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="225" Text="{Binding SiteFileName}" ToolTip.Tip="This will be the file name for the Nginx configuration and the systemd service."></TextBox>
+    </DockPanel>
+    <DockPanel Margin="0,0,0,20">
+      <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center">Server Host Name(s): </TextBlock>
+      <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="225" Text="{Binding ServerName}" ToolTip.Tip="The host names for which this site will receive requests."></TextBox>
+    </DockPanel>
+    <DockPanel Margin="0,0,0,20">
+      <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center">Description: </TextBlock>
+      <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Description}" Width="225"  ToolTip.Tip="This will be the description for the systemd service unit."></TextBox>
+    </DockPanel>
+    <DockPanel Margin="0,0,0,20">
+      <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center">App DLL Path: </TextBlock>
+      <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="225" Text="{Binding FilePath}" ToolTip.Tip="This is the path to the app's DLL that .NET Core will run."></TextBox>
+    </DockPanel>
+    <DockPanel Margin="0,0,0,20">
+      <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center">.NET Core Port: </TextBlock>
+      <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="225" Text="{Binding DotNetPort}" ToolTip.Tip="The port that will be used by this instance of .NET Core, where Nginx will forward requests.  This not your public port (80/443)."></TextBox>
+    </DockPanel>
+    <TextBlock TextWrapping="Wrap"  Margin="0,0,0,10">
+      NOTE: See Info tab for important information.
+    </TextBlock>
+    <TextBlock TextWrapping="Wrap"  Margin="0,0,0,10" Foreground="Red" Text="{Binding ErrorMessage}" IsVisible="{Binding IsErrorMessageVisible}">
+    </TextBlock>
+    <DockPanel Margin="0,0,0,10">
+      <Button DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Command="{Binding CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">Cancel</Button>
+      <Button DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Command="{Binding OKCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Margin="0,0,20,0">OK</Button>
+    </DockPanel>
+
+  </StackPanel>
+</Window>
